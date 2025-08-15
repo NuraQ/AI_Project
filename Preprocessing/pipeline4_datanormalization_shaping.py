@@ -4,13 +4,11 @@ import torch
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 
-# ---- Config ----
-DATA_DIR = './processed'  # Where your .npz files are saved
+DATA_DIR = './processed' 
 N_CHANNELS = 9               # Based on MOTOR_CHANNELS
 N_FREQ = 12                  # From tfr_multitaper bins
 N_TIME = 32                  # Time steps
 
-# ---- Step 1: Load all preprocessed files ----
 file_paths = [os.path.join(DATA_DIR, f) for f in os.listdir(DATA_DIR)
              if f.endswith('.npz') and not f.endswith('.event')]
 
@@ -59,7 +57,7 @@ X_train, y_train = X_vit[train_idx], torch.tensor(y[train_idx], dtype=torch.long
 X_dev, y_dev = X_vit[dev_idx], torch.tensor(y[dev_idx], dtype=torch.long)
 X_test, y_test = X_vit[test_idx], torch.tensor(y[test_idx], dtype=torch.long)
 
-print("🎯 Final Shapes:")
+print(" Final Shapes:")
 print(f"Train: {X_train.shape} (targets: {y_train.shape})")
 print(f"Dev: {X_dev.shape} (targets: {y_dev.shape})")
 print(f"Test: {X_test.shape} (targets: {y_test.shape})")
