@@ -4,14 +4,14 @@ import mne
 from babel.util import missing
 from matplotlib import pyplot as plt
 from sklearn.manifold import TSNE
-from sklearn.decomposition import PCA  # <--- Add this import
+from sklearn.decomposition import PCA 
 from scipy.interpolate import griddata
 from mne.time_frequency import psd_array_welch
 from sklearn.decomposition import FastICA
 from tqdm import tqdm
 
 # --- Config ---
-DATA_DIR = "./files"  # Directory with subject folders containing .edf files
+DATA_DIR = "./files"  
 GRID_SIZE = 64
 FS = 160  # Hz
 # SEGMENT_SECONDS = 6
@@ -22,7 +22,7 @@ SAMPLES_PER_SEGMENT = FS * SEGMENT_SECONDS
 FRAMES_PER_SEGMENT = 60
 SAMPLES_PER_FRAME = SAMPLES_PER_SEGMENT // FRAMES_PER_SEGMENT
 NOISE_STD = 1e-4
-NORMALIZE = False  # <--- Set this to False to disable normalization
+NORMALIZE = False  #
 EXCLUDED_SUBJECTS = {"S038", "S088", "S089", "S092", "S100", "S104"}
 TARGET_LABELS = {"T1": 0, "T2": 1, "T0": 2, "T3": 3}  # L, R, O, F
 SAVE_DIR = "./1_segment"
@@ -207,18 +207,17 @@ def extract_eeg_and_labels(edf_file):
         label = get_label(run_number, desc)
 
 
-            # Add this to DEBUG:
-        # print(f"🧠 Run {run_number}, Annotation: {desc} → Label: {label}")
+ 
 
 
         if label is not None:
             events.append((onset_sample, label))
 
-        print(f"\n🔍 Annotations in {edf_file} (Run {run_number}):")
+        print(f"\n Annotations in {edf_file} (Run {run_number}):")
         for ann in annotations:
             print(f" - At {ann['onset']:.2f}s → {ann['description']}")
 
-        # print("\n🧠 Events extracted:")
+        # print("\nEvents extracted:")
         for ann in annotations:
             onset_sample = int(ann['onset'] * 160)
             desc = ann['description']
@@ -293,9 +292,7 @@ for edf_file in tqdm(edf_files, desc="Processing subjects"):
         trial_data = data[:, onset:trial_end]
         total_samples = trial_data.shape[1]
 
-        # if total_samples < FS:
-        #     print(f"⚠️ Skipping short trial: only {total_samples} samples")
-        #     continue
+  
 
         n_chunks = total_samples // FS  # 1 second = 160 samples
 
@@ -376,6 +373,6 @@ y = np.array(y)
 
 # Save combined output
 np.savez("preprocessed_eeg_64x64.npz", X=X, y=y)
-print("✅ Preprocessing complete. Saved to preprocessed_eeg_64x64.npz and individual files in ./preprocessed_per_sample/")
+print("Preprocessing complete. Saved to preprocessed_eeg_64x64.npz and individual files in ./preprocessed_per_sample/")
 
 
