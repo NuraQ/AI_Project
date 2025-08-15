@@ -75,7 +75,7 @@ def process_edf_file(edf_path):
         )
         power = np.log1p(tfr.data)  # Shape: (n_epochs, n_chans, n_freq, n_time)
 
-        print("🔍 Power stats — min:", power.min(), "max:", power.max(), "mean:", power.mean())
+        print(" Power stats — min:", power.min(), "max:", power.max(), "mean:", power.mean())
 
         # Label mapping (guaranteed 1:1 with epochs now)
         run_num = int(os.path.basename(edf_path).split('R')[-1].split('.')[0])
