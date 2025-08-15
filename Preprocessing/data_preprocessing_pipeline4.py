@@ -87,7 +87,7 @@ def process_edf_file(edf_path):
         # Save
         output_name = os.path.join(OUTPUT_DIR, os.path.basename(edf_path).replace('.edf', '.npz'))
         np.savez(output_name, X=power, y=np.array(labels))
-        print(f"✅ Saved {output_name}")
+        print(f"Saved {output_name}")
         return output_name
 
     except Exception as e:
