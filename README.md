@@ -1,6 +1,6 @@
-## Dataset: PhysioNet EEG Motor Movement/Imagery (EEGMMI)
+## Dataset: PhysioNet EEG Motor Movement/Imagery (EEGMMIBD)
 
-We use the PhysioNet **EEG Motor Movement/Imagery** database (EEGMMI): 109 volunteers, 64-channel EEG (10–10 system) recorded with BCI2000 at 160 Hz. Each subject performed 14 runs: two 1-minute baselines (eyes open/closed) and three 2-minute runs for each of four task families covering executed and imagined limb movements (e.g., open/close fists or feet, and their imagined counterparts)
+The PhysioNet **EEG Motor Movement/Imagery** database (EEGMMIBD) was used: 109 volunteers, 64-channel EEG (10–10 system) recorded with BCI2000 at 160 Hz. Each subject performed 14 runs: two 1-minute baselines (eyes open/closed) and three 2-minute runs for each of four task families covering executed and imagined limb movements (e.g., open/close fists or feet, and their imagined counterparts)
 
 Multi-class cassification is testes on EEG signals using both deep-learning and transformer models. In addition to that, Full preprocessing pipelines implemented frpm scratch to evaluate performance on several models.
 
@@ -32,7 +32,7 @@ Multi-class cassification is testes on EEG signals using both deep-learning and 
 Per-sample `.npz` files stored in a folder (It wa stored on google collab). Typical contents:
 
 - `X`: EEG topomap array
-  - **5-band 64×64**: `(C, H, W)` with `C ≥ 5` (delta, theta, alpha, beta, gamma) → scripts keep the first 5.
+  - **5-band 64×64**: `(C, H, W)` with `C >= 5` (delta, theta, alpha, beta, gamma) => scripts keep the first 5.
   - **3-band 64×64**: `(C, H, W)` where code selects band indices (commonly theta/alpha/beta) before normalization.
   - **8×8**: `(5, 8, 8)`; some pipelines average across bands to `(1, 8, 8)` then replicate to 3 channels.
 - `y`: integer class label per sample.
